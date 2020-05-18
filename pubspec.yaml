@@ -1,0 +1,12 @@
+name: flogged
+description: Log to Logstash from Flutter applications using lumberdash
+version: 0.0.1
+author: Peter Bryant
+homepage: https://github.com/netsells/flogged
+
+environment:
+  sdk: ">=2.8.0 <3.0.0"
+
+dependencies:
+  lumberdash: ^2.1.1
+  http: ^0.12.1
