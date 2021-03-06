@@ -2,7 +2,6 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:lumberdash/lumberdash.dart';
-import 'package:meta/meta.dart';
 import 'package:http/http.dart' as http;
 
 /// Sends Lumberdash logs to a logstash instance.
@@ -30,18 +29,13 @@ import 'package:http/http.dart' as http;
 /// ```
 class FloggedLumberdash extends LumberdashClient {
   FloggedLumberdash({
-    @required this.appName,
-    @required this.appVersionName,
-    @required this.appVersionCode,
-    @required this.environment,
-    @required this.logstashUrl,
-    @required this.logstashPort,
-  })  : assert(appName != null),
-        assert(appVersionName != null),
-        assert(appVersionCode != null),
-        assert(environment != null),
-        assert(logstashUrl != null),
-        assert(logstashPort != null);
+    required this.appName,
+    required this.appVersionName,
+    required this.appVersionCode,
+    required this.environment,
+    required this.logstashUrl,
+    required this.logstashPort,
+  });
 
   /// The name of the app e.g. "My App"
   final String appName;
@@ -92,7 +86,7 @@ class FloggedLumberdash extends LumberdashClient {
   }
 
   @override
-  void logFatal(String message, [Map<String, String> extras]) {
+  void logFatal(String message, [Map<String, String>? extras]) {
     final data = _baseData;
     data['level'] = 'CRITICAL';
     data['message'] = message;
@@ -105,7 +99,7 @@ class FloggedLumberdash extends LumberdashClient {
   }
 
   @override
-  void logMessage(String message, [Map<String, String> extras]) {
+  void logMessage(String message, [Map<String, String>? extras]) {
     final data = _baseData;
     data['level'] = 'INFO';
     data['message'] = message;
@@ -114,7 +108,7 @@ class FloggedLumberdash extends LumberdashClient {
   }
 
   @override
-  void logWarning(String message, [Map<String, String> extras]) {
+  void logWarning(String message, [Map<String, String>? extras]) {
     final data = _baseData;
     data['level'] = 'WARN';
     data['message'] = message;
@@ -128,7 +122,7 @@ class FloggedLumberdash extends LumberdashClient {
   }) async {
     try {
       final r = await http.post(
-        '$logstashUrl:$logstashPort/',
+        Uri.parse('$logstashUrl:$logstashPort/'),
         body: jsonEncode(data),
         headers: <String, String>{
           'Content-Type': 'application/json; charset=UTF-8',

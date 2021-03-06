@@ -1,17 +1,21 @@
 name: flogged_example
 description: A new Flutter project.
 version: 1.0.0+1
+publish_to: none
 
 environment:
-  sdk: ">=2.8.0 <3.0.0"
+  sdk: ">=2.12.0 <3.0.0"
 
 dependencies:
   flutter:
     sdk: flutter
-  lumberdash: ^2.1.1
+  lumberdash:
+    git:
+      url: git@github.com:bmw-tech/lumberdash
+      ref: master
   flogged:
     path: ..
-  package_info: ^0.4.0+18
+  package_info: ^2.0.0
 dev_dependencies:
   flutter_test:
     sdk: flutter
