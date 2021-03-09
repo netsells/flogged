@@ -32,11 +32,9 @@ packages:
   lumberdash:
     dependency: "direct main"
     description:
-      path: "."
-      ref: master
-      resolved-ref: c6fbabbc0d28660f3911e4dc401ad47454875a8b
-      url: "git@github.com:bmw-tech/lumberdash"
-    source: git
+      name: lumberdash
+      url: "https://pub.dartlang.org"
+    source: hosted
     version: "3.0.0"
   meta:
     dependency: transitive
